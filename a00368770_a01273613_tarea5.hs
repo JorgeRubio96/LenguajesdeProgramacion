@@ -78,13 +78,20 @@ ab = A (A (A V 2 V)
             15 
             V))
 nivel :: AB -> Integer -> Integer
-
+nivel V e = []
+nivel (A l v r) valor
+	| v == valor = 1
+	| v < valor = (1 + (nivel r valor))
+	| otherwise = (1 + (nivel l valor))
 
 --7.- rango dado un arbol binario y dos valores que describen un rango
 -- regresa una lista ordenada que contenga todos los valore en el rango que 
 -- se encuentran en el arbol
 rango :: AB -> Integer -> Integer -> [Integer]
-
+rango V valor1 valor2 = []
+rango (A l v r) valUno valDos 
+	| v >= valUno && v <= valDos = [v] ++ (rango l valUno valDos) ++ (rango r valUno valDos)
+	| otherwise = (rango r valUno valDos)
 
 --8.- valmat crea una matriz NxM con un valor
 valmat :: Integer -> Integer -> Integer -> [Integer]
