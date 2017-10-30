@@ -95,14 +95,18 @@ rango (A l v r) valUno valDos
 
 --8.- valmat crea una matriz NxM con un valor
 valmat :: Integer -> Integer -> Integer -> [Integer]
+valmat a n x = [a | _ <- [x | _ <- [1..n]]]
 
 
 -- 9.- chess crea una matris cuadrada de NxN, donde la suma
 -- de las coordenadas par sea 1's y las impar 0´s
 chess :: Integer -> [Integer]
+chess n =
+   array ((1,1),(n,n)) ([( (i,j), 1) | i <- range (1,n), j <- range (1,n), i==j]++ [( (i,j), 0) | i <- range (1,n), j <- range (1,n), i/=j])
 
 -- 10.- reducir es una funcion que a partir de una lista
 -- genera una lista de listas, donde se vayan eliminado sus elementos
 -- hasta que se vacie
-reducir :: [Integer] -> [Integer]
-
+reducir ::[a] ->[a]
+reducir [] = []
+reducir xs = [xs|x<-xs,drop 1 xs]
