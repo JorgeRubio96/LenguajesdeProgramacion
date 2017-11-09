@@ -3,20 +3,20 @@
 -module(servidor_taxis).
 -export([inicio/0, servidor/1 ]).
  
- %1.-  Servidor de registro de usuarios
+ %1.- Servidor de registro de usuarios
  servidor(Datos) ->
  	receive
- 		{De, {registra, Quien, {X, Y}}}} ->
- 			De ! {servidor_registro, ok},
- 			servidor(registra(Quien, PID, Datos));
+ 		{De, {solicitar, PID, Quien, {X, Y}}}} ->
+ 			De ! {servidor_taxis, ok},
+ 			servidor(registra(PID, Quien, {X, Y}));
  		{De, {consulta, Quien}} ->
- 			De ! {servidor_registro, busca(Quien, Datos)},
+ 			De ! {servidor_taxis, busca(Quien, Datos)},
  			servidor(Datos);
  	end .
 
 inicio() ->
-	register(servidor_registro,
-			spawn(servidor_registro, servidor, [[]])) .
+	register(servidor_taxis,
+			spawn(servidor_taxis, servidor, [[]])) .
 
 busca(Quien, [{Quien, Valor} | _]) ->
 		PID + '... Sigue Vivo';
@@ -25,5 +25,6 @@ busca(Quien, [_|T]) ->
 busca(_,_) ->
 		indefinido .
 
-registra(Quien, PID) ->
-		[{Quien, PID}];
+%registrar un cliente que desea un taxi
+registra(PID, Quien, {X, Y}) ->
+		[{PID, Quien, {X, Y}}];
