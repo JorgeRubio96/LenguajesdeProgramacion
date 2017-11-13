@@ -22,6 +22,9 @@ taxi_llego() ->
 solicitar2(PID, {X, Y}) ->
 	llama_servidor2({solicitar, PID, {X, Y}}) .
 
+disponibilidad(PID, Quien, {X, Y}) ->
+	llama_servidor2({cliente_disponiblidad_taxis, PID, Quien, {X, Y}}) .
+
 %CLIENTE
 llama_servidor(Mensaje) ->
 	Matriz = matriz(),

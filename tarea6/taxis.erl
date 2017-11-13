@@ -3,6 +3,7 @@
 
 %4.- TAXI del ejercicio
 matriz() -> 'servidor@TAX241' . 
+matriz2() -> 'servidor@TAX240' . 
 
 %llamada que realiza un taxi cuando llega a la central
 llegue(PID, Tipo, Placa ) ->
@@ -15,6 +16,19 @@ arribo(Mensaje) ->
 %TAXI
 llama_servidor(Mensaje) ->
 	Matriz = matriz(),
+	monitor_node(Matriz, true),
+	{central_taxi, Matriz} ! {self(), Mensaje},
+	receive
+		{centr, Respuesta} ->
+			monitor_node(Matriz, false),
+			Respuesta;
+		{nodedown, Matriz} ->
+				PID + 'Fin' 
+	end .
+
+%TAXI
+llama_servidor2(Mensaje) ->
+	Matriz = matriz2(),
 	monitor_node(Matriz, true),
 	{central_taxi, Matriz} ! {self(), Mensaje},
 	receive

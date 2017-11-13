@@ -6,7 +6,7 @@
 
 --funcion principal
 mediana :: Integer -> Integer -> Integer -> Integer -> Integer -> Integer
-mediana a b c d e = medio (medio a b c) d e 
+mediana a b c d e = numMedio (numMedio a b c) d e 
 
 --numMedio ayuda a obtener el numero de la media de 3 elementos
 numMedio :: Integer -> Integer -> Integer -> Integer 
@@ -54,7 +54,7 @@ divide (x:xs) (y:ys) =
 intercala :: Integer -> [Integer] -> [[Integer]]
 intercala xs [] = [xs]
 intercala e (x:xs') =
-	map (x : )(intercala e' xs)
+	map (x : )(intercala e xs')
 
 -- 5.- Permutacion funcion que obtiene la lista de todas
 -- las permutaciones generadas a partir de una lista
