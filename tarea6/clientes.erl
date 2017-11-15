@@ -1,5 +1,7 @@
 % Matricula 1: A00368770
 % Matricula 2: A01273613
+% Matricula 3: A01036055
+% Matricula 4: A01035095
 %2.- Cliente del ejercicio
 -module(clientes) .
 -export([consulta/1, solicitar/2]) .
@@ -11,12 +13,14 @@ matriz2() -> 'servidor@TAX241' .
 
 %Funcion para solicitar un taxi
 solicitar(PID, Quien, {X, Y}) ->
+	io:format("Se solicito un taxi! ~n"),
 	llama_servidor({solicitar, PID, Quien, {X, Y}}}) .
 %funcion para cancelar un taxi, el cual es directo con el taxi
 cancelar() ->
 	llama_servidor({terminar}) .
 %Funcion para avisar que ya llego el taxi
 taxi_llego() ->
+	io:format("El taxi ya llego! ~n"),
 	llama_servidor({terminar}) .
 %Funcion para registrar el cliente en central de taxis
 solicitar2(PID, {X, Y}) ->

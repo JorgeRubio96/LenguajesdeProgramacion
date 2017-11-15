@@ -1,5 +1,7 @@
 % Matricula 1: A00368770
 % Matricula 2: A01273613
+% Matricula 3: A01036055
+% Matricula 4: A01035095
 -module(central_taxis).
 -export([central/1, inicio/0, registra/4, registraClientes/2, server_logon_Taxis/4,server_disponibilidad_Taxis/4, cliente_disponiblidad_taxis/3
  ]).

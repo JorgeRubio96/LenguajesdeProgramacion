@@ -1,5 +1,7 @@
 % Matricula 1: A00368770
 % Matricula 2: A01273613
+% Matricula 3: A01036055
+% Matricula 4: A01035095
 -module(servidor_taxis).
 -export([inicio/0, servidor/1, busca/2, registra/3, server_logon/4]).
  
